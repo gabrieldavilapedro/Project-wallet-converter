@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { submmitUserData } from '../redux/actions';
-import { State } from '../types';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -15,7 +14,6 @@ function Login() {
     const emailRegex = /\S+@\S+\.\S+/;
     return emailRegex.test(email);
   };
-  const rootState = useSelector((state: State) => state.user.email);
   const isPasswordValid = () => password.length >= 6;
 
   return (
@@ -49,7 +47,6 @@ function Login() {
       >
         Entrar
       </button>
-      <p>{rootState}</p>
     </form>
   );
 }
