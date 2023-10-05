@@ -7,13 +7,6 @@ function WalletForm() {
   const rootState = useSelector((state: GlobalStateType) => state.wallet);
   const dispatch: WalletFormeDispatch = useDispatch();
 
-  // const currencies = Object
-  //   .keys(rootState.currencies)
-  //   .filter((currency) => currency !== 'USDT');
-
-  const currencies = rootState.currencies
-    .filter((currency) => currency !== 'USDT');
-
   useEffect(() => {
     dispatch(fetchApiData());
   }, [dispatch]);
@@ -28,7 +21,7 @@ function WalletForm() {
 
         <label htmlFor="moeda">Moeda: </label>
         <select id="moeda" data-testid="currency-input">
-          {currencies.map((currency) => (
+          {rootState.currencies.map((currency) => (
             <option
               key={ currency }
               value={ currency }

@@ -19,7 +19,7 @@ const requestApiData = () => ({
   type: REQUEST_API_DATA,
 });
 
-const receiveApiData = (currencies: AnyAction) => ({
+const receiveApiData = (currencies: Array<string>) => ({
   type: RECEIVE_API_DATA,
   payload: currencies,
 });

@@ -23,7 +23,7 @@ export const walletReducer: (state: WalletType, action: AnyAction) => WalletType
     case RECEIVE_API_DATA:
       return {
         ...state,
-        currencies: Object.keys(action.payload),
+        currencies: action.payload,
         isFetching: false,
       };
     case FAILED_REQUEST_API_DATA:
