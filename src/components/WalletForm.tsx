@@ -1,51 +1,118 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { GlobalStateType, WalletFormeDispatch } from '../types';
-import { fetchApiData } from '../redux/actions';
+import { addExpense, fetchApiDataValores } from '../redux/actions';
 
 function WalletForm() {
+  const [id, setId] = useState<number>(0);
+  const [value, setValue] = useState<string>('');
+  const [description, setDescription] = useState<string>('Sem descrição');
+  const [currency, setCurrency] = useState<string>('USD');
+  const [method, setMethod] = useState<string>('Dinheiro');
+  const [tag, setTag] = useState<string>('Alimentacao');
+
   const rootState = useSelector((state: GlobalStateType) => state.wallet);
+  console.log(rootState);
+
+  const rootStateValoresApi = useSelector((state: GlobalStateType) => state.valoresAPI);
+  console.log(rootStateValoresApi);
+
   const dispatch: WalletFormeDispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchApiData());
+    dispatch(fetchApiDataValores());
   }, [dispatch]);
 
   return (
     <div>
-      <form>
+      <form
+        onSubmit={ (e) => {
+          e.preventDefault();
+          setId(id + 1);
+          setValue('');
+          setDescription('');
+          setCurrency('USD');
+          setMethod('Dinheiro');
+          setTag('Alimentacao');
+        } }
+      >
         <label htmlFor="despesa">valor da despesa: </label>
-        <input id="despesa" data-testid="value-input" type="number" />
+        <input
+          id="despesa"
+          data-testid="value-input"
+          type="number"
+          value={ value }
+          onChange={ (e) => setValue(e.target.value) }
+        />
+
         <label htmlFor="descricao">Descrição: </label>
-        <input id="descricao" data-testid="description-input" type="text" />
+        <input
+          id="descricao"
+          data-testid="description-input"
+          type="text"
+          value={ description }
+          onChange={ (e) => setDescription(e.target.value) }
+        />
 
         <label htmlFor="moeda">Moeda: </label>
-        <select id="moeda" data-testid="currency-input">
-          {rootState.currencies.map((currency) => (
+        <select
+          id="moeda"
+          data-testid="currency-input"
+          value={ currency }
+          onChange={ (e) => setCurrency(e.target.value) }
+        >
+          {rootState.currencies.map((code) => (
             <option
-              key={ currency }
-              value={ currency }
+              key={ code }
+              value={ code }
             >
-              { currency }
+              { code }
 
             </option>
           ))}
         </select>
 
         <label htmlFor="pagamento">método de pagamento: </label>
-        <select id="pagamento" data-testid="method-input">
-          <option value="dinheiro">Dinheiro</option>
-          <option value="cartao de credito">Cartão de crédito</option>
-          <option value="cartao de debito">Cartão de débito</option>
+        <select
+          id="pagamento"
+          data-testid="method-input"
+          value={ method }
+          onChange={ (e) => setMethod(e.target.value) }
+        >
+          <option value="Dinheiro">Dinheiro</option>
+          <option value="Cartão de crédito">Cartão de crédito</option>
+          <option value="Cartão de débito">Cartão de débito</option>
         </select>
+
         <label htmlFor="tag">tag: </label>
-        <select id="tag" data-testid="tag-input">
-          <option value="alimentacao">Alimentação</option>
-          <option value="lazer">Lazer</option>
-          <option value="trabalho">Trabalho</option>
-          <option value="transporte">Transporte</option>
-          <option value="saude">Saúde</option>
+        <select
+          id="tag"
+          data-testid="tag-input"
+          value={ tag }
+          onChange={ (e) => setTag(e.target.value) }
+        >
+          <option value="Alimentacao">Alimentação</option>
+          <option value="Lazer">Lazer</option>
+          <option value="Trabalho">Trabalho</option>
+          <option value="Transporte">Transporte</option>
+          <option value="Saude">Saúde</option>
         </select>
+        <button
+          onClick={ async (): Promise<void> => {
+            await dispatch(fetchApiDataValores());
+            await dispatch(addExpense({
+              id,
+              value,
+              description,
+              currency,
+              method,
+              tag,
+              exchangeRates: rootStateValoresApi.currencies }));
+          } }
+        >
+          Adicionar despesa
+
+        </button>
       </form>
     </div>
   );
