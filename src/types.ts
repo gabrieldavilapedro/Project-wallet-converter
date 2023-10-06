@@ -18,6 +18,29 @@ export type State = {
   wallet: WalletType;
 };
 
+export type Expense = {
+  id: number;
+  value: string;
+  description: string;
+  currency: string;
+  method: string;
+  tag: string;
+  exchangeRates: {
+    [key: string]: {
+      name: string;
+      ask: string;
+      bid: string;
+      code: string;
+      codein: string;
+      create_date: string;
+      high: string;
+      low: string;
+      pctChange: string;
+      timestamp: string;
+    };
+  };
+};
+
 export type GlobalStateType = {
   user: User;
   wallet: WalletType;

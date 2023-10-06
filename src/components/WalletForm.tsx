@@ -12,10 +12,8 @@ function WalletForm() {
   const [tag, setTag] = useState<string>('Alimentacao');
 
   const rootState = useSelector((state: GlobalStateType) => state.wallet);
-  console.log(rootState);
 
   const rootStateValoresApi = useSelector((state: GlobalStateType) => state.valoresAPI);
-  console.log(rootStateValoresApi);
 
   const dispatch: WalletFormeDispatch = useDispatch();
 
@@ -98,6 +96,7 @@ function WalletForm() {
           <option value="Saude">Saúde</option>
         </select>
         <button
+          data-testid="btn-add"
           onClick={ async (): Promise<void> => {
             await dispatch(fetchApiDataValores());
             await dispatch(addExpense({
