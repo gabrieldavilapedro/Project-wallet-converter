@@ -8,9 +8,11 @@ export type User = {
 
 export type WalletType = {
   currencies: Array<string>,
+  expenses: any,
   isFetching: boolean,
   error: string,
 };
+
 export type State = {
   user: User;
   wallet: WalletType;
@@ -19,6 +21,7 @@ export type State = {
 export type GlobalStateType = {
   user: User;
   wallet: WalletType;
+  valoresAPI: WalletType;
 };
 
 export type WalletFormeDispatch = ThunkDispatch<GlobalStateType, unknown, AnyAction>;
