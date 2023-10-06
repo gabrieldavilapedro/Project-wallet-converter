@@ -43,7 +43,7 @@ function Login() {
       />
       <button
         disabled={ !(isEmailValid() && isPasswordValid()) }
-        data-testid="login-button"
+        data-testid="login-submit-btn"
       >
         Entrar
       </button>
