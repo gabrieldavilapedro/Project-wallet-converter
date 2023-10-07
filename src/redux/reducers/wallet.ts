@@ -6,7 +6,9 @@ import { WalletType } from '../../types';
 import {
   REQUEST_API_DATA,
   FAILED_REQUEST_API_DATA,
-  RECEIVE_API_DATA, ADD_EXPENSE } from '../actions';
+  RECEIVE_API_DATA, ADD_EXPENSE,
+  DELETE_EXPENSE,
+} from '../actions';
 
 const INITIAL_STATE: WalletType = {
   currencies: [],
@@ -42,6 +44,13 @@ export const walletReducer: (state: WalletType, action: AnyAction) => WalletType
         ...state,
         expenses: [...state.expenses, action.payload],
       };
+    case DELETE_EXPENSE:
+      return {
+        ...state,
+        expenses: state.expenses
+          .filter((expense: { id: any; }) => expense.id !== action.payload),
+      };
+
     default:
       return state;
   }
