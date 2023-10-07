@@ -18,7 +18,7 @@ export type State = {
   wallet: WalletType;
 };
 
-export type Expense = {
+export type ExpenseType = {
   id: number;
   value: string;
   description: string;

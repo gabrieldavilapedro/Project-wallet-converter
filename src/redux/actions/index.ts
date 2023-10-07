@@ -16,6 +16,8 @@ export const REQUEST_API_DATA_VALORES = 'REQUEST_API_DATA_VALORES';
 export const RECEIVE_API_DATA_VALORES = 'RECEIVE_API_DATA_VALORES';
 export const FAILED_REQUEST_API_DATA_VALORES = 'FAILED_REQUEST_API_DATA_VALORES';
 
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+
 export const submmitUserData = (user: User) => ({
   type: SUBMIT_USER_DATA,
   payload: user,
@@ -24,6 +26,11 @@ export const submmitUserData = (user: User) => ({
 export const addExpense = (expenses: any) => ({
   type: ADD_EXPENSE,
   payload: expenses,
+});
+
+export const deleteExpense = (id: number) => ({
+  type: DELETE_EXPENSE,
+  payload: id,
 });
 
 const requestApiDataValores = () => ({
