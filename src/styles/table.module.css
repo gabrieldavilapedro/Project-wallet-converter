@@ -1,0 +1,47 @@
+.tableContainer {
+  align-items: center;
+  background-color: #003be5;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-left: 300px;
+  margin-right: 300px;
+  padding: 50px;
+
+}
+
+.tableContainer table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tableContainer table th , .tableContainer table td {
+  border-bottom: 1px solid white;
+  padding: 10px 1px;
+  text-align: center;
+}
+
+.tableContainer table th {
+  border-left: none;
+  border-right: none;
+  border-top: 5px solid white;
+}
+
+.tableContainer table td {
+  border-left: none;
+  border-right: none;
+}
+
+.tableContainer button {
+  background-color: #2fc18c;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+}

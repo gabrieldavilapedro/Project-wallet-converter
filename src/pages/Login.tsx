@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { submmitUserData } from '../redux/actions';
+import styles from '../styles/login.module.css';
+import walletLogo from '../icons/wallet.png';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -17,37 +19,44 @@ function Login() {
   const isPasswordValid = () => password.length >= 6;
 
   return (
-    <form
-      onSubmit={ (e) => {
-        e.preventDefault();
-        dispatch(submmitUserData({ email, password }));
-        navigate('/carteira');
-      } }
-    >
-      <h1>Login</h1>
-      <label htmlFor="email">Email: </label>
-      <input
-        data-testid="email-input"
-        type="email"
-        id="email"
-        value={ email }
-        onChange={ (e) => setEmail(e.target.value) }
-      />
-      <label htmlFor="password">Password: </label>
-      <input
-        data-testid="password-input"
-        type="password"
-        id="password"
-        value={ password }
-        onChange={ (e) => setPassword(e.target.value) }
-      />
-      <button
-        disabled={ !(isEmailValid() && isPasswordValid()) }
-        data-testid="login-submit-btn"
+    <div className={ styles.loginContainer }>
+      <form
+        onSubmit={ (e) => {
+          e.preventDefault();
+          dispatch(submmitUserData({ email, password }));
+          navigate('/carteira');
+        } }
       >
-        Entrar
-      </button>
-    </form>
+        <div>
+          <img src={ walletLogo } alt="wallet Logo" />
+          <h1>
+            Wallet
+          </h1>
+        </div>
+        <input
+          placeholder="Email"
+          data-testid="email-input"
+          type="email"
+          id="email"
+          value={ email }
+          onChange={ (e) => setEmail(e.target.value) }
+        />
+        <input
+          placeholder="Password"
+          data-testid="password-input"
+          type="password"
+          id="password"
+          value={ password }
+          onChange={ (e) => setPassword(e.target.value) }
+        />
+        <button
+          disabled={ !(isEmailValid() && isPasswordValid()) }
+          data-testid="login-submit-btn"
+        >
+          Entrar
+        </button>
+      </form>
+    </div>
   );
 }
 

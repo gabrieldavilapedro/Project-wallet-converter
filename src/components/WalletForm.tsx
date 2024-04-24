@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { GlobalStateType, WalletFormeDispatch } from '../types';
 import { addExpense, fetchApiDataValores } from '../redux/actions';
+import styles from '../styles/walletForm.module.css';
 
 function WalletForm() {
   const [id, setId] = useState<number>(0);
@@ -22,19 +23,19 @@ function WalletForm() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={ styles.formContainer }>
       <form
         onSubmit={ (e) => {
           e.preventDefault();
           setId(id + 1);
           setValue('');
-          setDescription('');
+          setDescription('Sem descrição');
           setCurrency('USD');
           setMethod('Dinheiro');
           setTag('Alimentacao');
         } }
       >
-        <label htmlFor="despesa">valor da despesa: </label>
+        <label htmlFor="despesa">Valor da despesa </label>
         <input
           id="despesa"
           data-testid="value-input"
@@ -43,7 +44,7 @@ function WalletForm() {
           onChange={ (e) => setValue(e.target.value) }
         />
 
-        <label htmlFor="descricao">Descrição: </label>
+        <label htmlFor="descricao">Descrição </label>
         <input
           id="descricao"
           data-testid="description-input"
@@ -52,7 +53,7 @@ function WalletForm() {
           onChange={ (e) => setDescription(e.target.value) }
         />
 
-        <label htmlFor="moeda">Moeda: </label>
+        <label htmlFor="moeda">Moeda </label>
         <select
           id="moeda"
           data-testid="currency-input"
@@ -70,7 +71,7 @@ function WalletForm() {
           ))}
         </select>
 
-        <label htmlFor="pagamento">método de pagamento: </label>
+        <label htmlFor="pagamento">Método de pagamento </label>
         <select
           id="pagamento"
           data-testid="method-input"
@@ -82,7 +83,7 @@ function WalletForm() {
           <option value="Cartão de débito">Cartão de débito</option>
         </select>
 
-        <label htmlFor="tag">tag: </label>
+        <label htmlFor="tag">Tag </label>
         <select
           id="tag"
           data-testid="tag-input"
@@ -95,23 +96,25 @@ function WalletForm() {
           <option value="Transporte">Transporte</option>
           <option value="Saude">Saúde</option>
         </select>
-        <button
-          data-testid="btn-add"
-          onClick={ async (): Promise<void> => {
-            await dispatch(fetchApiDataValores());
-            await dispatch(addExpense({
-              id,
-              value,
-              description,
-              currency,
-              method,
-              tag,
-              exchangeRates: rootStateValoresApi.currencies }));
-          } }
-        >
-          Adicionar despesa
+        <div>
+          <button
+            data-testid="btn-add"
+            onClick={ async (): Promise<void> => {
+              await dispatch(fetchApiDataValores());
+              await dispatch(addExpense({
+                id,
+                value,
+                description,
+                currency,
+                method,
+                tag,
+                exchangeRates: rootStateValoresApi.currencies }));
+            } }
+          >
+            Adicionar despesa
 
-        </button>
+          </button>
+        </div>
       </form>
     </div>
   );

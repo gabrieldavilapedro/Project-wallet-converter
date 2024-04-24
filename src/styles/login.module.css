@@ -1,0 +1,31 @@
+.loginContainer {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
+}
+
+.loginContainer form {
+  background-color: #e1e5eb;
+  border-radius: 5px;
+  height: 260px;
+  padding: 20px;
+  width: 300px;
+}
+
+.loginContainer h1 {
+  color: green;
+}
+
+.loginContainer div {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.loginContainer img {
+  height: 110px;
+  margin-right: 10px; /* Adiciona uma margem à direita da imagem */
+  width: 110px;
+}

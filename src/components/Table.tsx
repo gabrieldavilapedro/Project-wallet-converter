@@ -1,13 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { ExpenseType, GlobalStateType } from '../types';
 import { deleteExpense } from '../redux/actions';
-// import { deleteExpense } from '../actions';
+import styles from '../styles/table.module.css';
 
 function Table() {
   const rootState = useSelector((state: GlobalStateType) => state.wallet.expenses);
   const dispatch = useDispatch();
   return (
-    <div>
+    <div className={ styles.tableContainer }>
       <table>
         <thead>
           <tr>

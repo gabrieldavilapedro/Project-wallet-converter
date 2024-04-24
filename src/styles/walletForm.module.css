@@ -1,0 +1,38 @@
+.formContainer {
+  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  padding: 80px;
+
+}
+
+.formContainer form {
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+}
+
+.formContainer form button {
+  background-color: #2fc18c;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.formContainer label {
+  color: #003be5;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.formContainer select option {
+  background-color: #f0f0f0;
+  color: #003be5;
+}
