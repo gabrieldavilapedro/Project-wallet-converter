@@ -1,0 +1,34 @@
+.headerContainer {
+  align-items: center;
+  color: white;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.headerContainer h1 , .headerContainer h3 {
+  align-items: center;
+  color: #2fc18c;
+  display: flex;
+  gap: 10px;
+}
+
+.headerContainer p {
+  color: #003be5;
+  font-size: 20px;
+}
+
+.headerContainer h3 {
+  color: #2fc18c;
+}
+
+.headerContainer img {
+  width: 110px;
+}
+
+.userLogo {
+  border-radius: 60%;
+}
+

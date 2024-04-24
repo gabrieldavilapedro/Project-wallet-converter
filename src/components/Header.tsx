@@ -1,6 +1,9 @@
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { GlobalStateType, State } from '../types';
+import styles from '../styles/header.module.css';
+import userLogo from '../icons/user.png';
+import walletLogo from '../icons/wallet.png';
 
 function Header() {
   const rootState = useSelector((state: State) => state.user);
@@ -18,19 +21,23 @@ function Header() {
   };
 
   return (
-    <div>
-      <h3 data-testid="email-field">
-        Seu email:
-        {' '}
-        {rootState.email}
-        {' '}
-      </h3>
+    <div className={ styles.headerContainer }>
+      <h1>
+        <img src={ walletLogo } alt="wallet Logo" />
+        Wallet
+      </h1>
       <p data-testid="total-field">
-        {DespesaTotal()}
+        {`Total de Despesas: R$:${DespesaTotal()}`}
       </p>
       <p data-testid="header-currency-field">
         Câmbio:BRL
       </p>
+      <h3 data-testid="email-field">
+        <img className={ styles.userLogo } src={ userLogo } alt="user Logo" />
+        {' '}
+        {rootState.email}
+        {' '}
+      </h3>
     </div>
   );
 }
