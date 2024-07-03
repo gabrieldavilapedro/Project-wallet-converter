@@ -57,23 +57,5 @@ describe('testes da aplicaçao', () => {
 
       expect(button).toBeDisabled();
     });
-    // test("verifica seo usuario e redirecionado para a pagina '/carteira'", async () => {
-    //   const { getByTestId } = renderWithRouterAndRedux(<App />);
-    //   const emailValido = 'Gabriel@gmail.com';
-    //   const senhavalida = '666666';
-
-    //   const email = getByTestId(inputEmailId);
-    //   const senha = getByTestId(inputPasswordId);
-    //   const button = getByTestId(loginButão);
-
-    //   await userEvent.type(email, emailValido);
-    //   await userEvent.type(senha, senhavalida);
-    //   await userEvent.click(button);
-
-    //   expect(getByTestId('email-field')).toBeInTheDocument();
-    //   expect(getByTestId('total-field')).toBeInTheDocument();
-    //   expect(getByTestId('header-currency-field')).toBeInTheDocument();
-    //   waitFor(() => expect(global.window.location.pathname).toEqual('/carteira'));
-    // });
   });
 });
